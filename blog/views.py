@@ -15,7 +15,7 @@ class PostListView(ListView):
         return context
     
 
-class PostDetailview(DetailView):
+class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post_detail.html"
     context_object_name = "post"

@@ -3,3 +3,4 @@ venv
 __cache__
 __pycache__
 /thumbnails/
+media/images/thumbnails
