@@ -10,7 +10,9 @@
             </p>
         {% endif %}
         <strong>
-            {{ post.title }}
+            <a href="{{ post.get_absolute_url }}">
+                {{ post.title }}
+            </a>
         </strong>
         <p>
             {{ post.description }}
