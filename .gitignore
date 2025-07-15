@@ -2,4 +2,4 @@ venv
 .env
 __cache__
 __pycache__
-media/
+/thumbnails/

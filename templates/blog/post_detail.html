@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if post.thumbnail %}
+        <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" width="250">
+    {% else %}
+        <P>
+            Нет изображения
+        </P>
+    {% endif %}
+    <strong>
+        {{ post.title }}
+    </strong>
+    <p>
+        {{ post.description }}
+    </p>
+    <p>
+        {{ post.text }}
+    </p>
+    <small>
+        {{ post.create }}
+    </small>
+    <span>
+        {{ post.category.title }}
+    </span>
+
+
+{% endblock  %}
