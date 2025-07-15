@@ -77,7 +77,7 @@ class Post(models.Model):
         default="default.jpg",
         verbose_name="Изображение поста",
         blank=True,
-        upload_to="images/thumbnails/",
+        upload_to="images/thumbnails/%Y/%m/%d",
         validators=[
             FileExtensionValidator(
                 allowed_extensions=("png", "jpg", "webp", "jpeg", "gif")
