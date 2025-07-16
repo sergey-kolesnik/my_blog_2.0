@@ -28,6 +28,9 @@
                         <small>
                             Добавил {{ post.author.username }}, {{ post.create }}
                         </small>
+                        в категорию <a href="{{ post.category.get_absolute_url }}">
+                            {{ post.category.title }}
+                        </a>
                     </div>
                 </div>
             </div>
