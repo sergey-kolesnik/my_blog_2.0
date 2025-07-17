@@ -62,6 +62,14 @@ class Category(MPTTModel):
         return str(self.title)
 
 
+class PostManager(models.Manager):
+    """
+    Кастомный менеджер для модели постов
+    """
+    def get_queryset(self):
+        return super().get_queryset().select_related("author", "category").filter(status="published")
+
+
 class Post(models.Model):
     """
     Модель постов для блога
@@ -117,6 +125,11 @@ class Post(models.Model):
         blank=True,
     )
     fixed = models.BooleanField(verbose_name="Прикреплено", default=False)
+
+
+    objects = models.Manager()
+    custom = PostManager()
+
 
     class Meta:
         db_table = "blog_post"
