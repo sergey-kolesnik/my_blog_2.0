@@ -22,7 +22,7 @@ class Profile(models.Model):
         """
         Сортировка, название таблицы в базе данных
         """
-        ordering = ("user")
+        ordering = ("user",)
         verbose_name = "Профиль"
         verbose_name_plural = "Профили"
 
