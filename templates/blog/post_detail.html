@@ -23,6 +23,10 @@
     <span>
         {{ post.category.title }}
     </span>
+    <a href="{% url "post_update" slug=post.slug %}">
+        Редактировать пост
+    </a>
+
 
 
 {% endblock  %}
