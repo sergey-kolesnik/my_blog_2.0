@@ -1,10 +1,13 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import (
     Post,
     Category,
 )
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
-from .forms import PostCreateForm
+from .forms import PostCreateForm, PostUpdateForm
+from services.mixins import AuthorRequiredMixin
 
 class PostListView(ListView):
     template_name = "blog/post_list.html"
@@ -52,7 +55,7 @@ class PostFromCategory(ListView):
     
 
 
-class PostCreateView(CreateView):
+class PostCreateView(CreateView, LoginRequiredMixin):
     """
     Представление: создание материалов на сайте
     """
@@ -67,4 +70,23 @@ class PostCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdateView(AuthorRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Представление: обновления материала на сайте
+    """
+    model = Post
+    template_name = 'blog/post_update.html'
+    context_object_name = 'post'
+    form_class = PostUpdateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Обновление статьи: {self.object.title}'
+        return context
+
+    def form_valid(self, form):
+        form.instance.updater = self.request.user
         return super().form_valid(form)
