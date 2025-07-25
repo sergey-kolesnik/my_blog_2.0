@@ -141,3 +141,8 @@ def show_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = (BASE_DIR / 'static')
+STATICFILES_DIRS = [BASE_DIR / '/templates/js/']
